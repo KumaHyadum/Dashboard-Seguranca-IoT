@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: #222;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.cabecalho {
+    margin-bottom: 20px;
+}
+
+.painel {
+    border: 1px solid #aaa;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.ambientes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ambiente {
+    border: 1px solid #aaa;
+    padding: 15px;
+    flex: 1 1 180px;
+}
+
+.ambiente[data-estado="normal"] {
+    border-top-width: 2px;
+    border-top-color: #22c55e;
+    font-weight: bold;
+}
+
+.ambiente[data-estado="alerta"] {
+    border-top-width: 2px;
+    border-top-color: #ef4444;
+    font-weight: bold;
+}
+
+.ambiente[data-estado="alerta"] .status {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+#lista-logs {
+    padding-left: 32px;
+    padding-right: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+}
+
+#lista-logs li {
+    padding: 10px 0;
+    border-bottom: 1px solid #475569;
+}
+
+footer {
+    font-size: 14px;
+    color: #555;
+}
+
+@media (max-width: 700px) {
+    .ambientes {
+        flex-direction: column;
+    }
+
+    .ambiente {
+        flex-basis: auto;
+    }
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard - Sistema de Segurança IoT</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+
+
+    <body>
+        <header class="cabecalho">
+            <h1>Segurança IoT</h1>
+            <p>Monitoramento dos ambientes</p>
+        </header>
+
+        <main>
+            <!-- Informações gerais -->
+            <section class="painel" aria-labelledby="titulo-sistema">
+                <h2 id="titulo-sistema">Estado do sistema</h2>
+
+                <p>
+                    Sistema:
+                    <strong id="estado-sistema">Aguardando dados</strong>
+                </p>
+
+                <p>
+                    Dispositivo:
+                    <strong id="estado-dispositivo">Esp32</strong>
+                </p>
+
+                <p>
+                    Última atualização:
+                    <strong id="ultima-atualizacao">-</strong>
+                </p>
+
+                <p id="estado-conexao" role="status">
+                    Aguardando conexão com o Firebase.
+                </p>
+
+
+            </section>
+
+            <!-- Ambientes monitorados -->
+            <section aria-labelledby="titulo-ambientes">
+                <h2 id="titulo-ambientes">Ambientes</h2>
+
+                <div class="ambientes">
+                    <article id="sensor-garagem" class="ambiente" data-estado="desconhecido">
+                        <h3>Garagem</h3>
+                        <p class="status" role="status">Aguardando dados</p>
+                    </article>
+
+                    <article id="sensor-estoque" class="ambiente" data-estado="desconhecido">
+                        <h3>Estoque</h3>
+                        <p class="status" role="status">Aguardando dados</p>
+                    </article>
+
+                    <article id="sensor-area-central" class="ambiente" data-estado="desconhecido">
+                        <h3>Área Central</h3>
+                        <p class="status" role="status">Aguardando dados</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Histórico -->
+            <section class="painel" aria-labelledby="titulo-logs">
+                <h2 id="titulo-logs">Histórico de eventos</h2>
+
+                <p id="logs-vazios">Nenhum evento carregado.</p>
+
+                <ol id="lista-logs"></ol>
+            </section>
+        </main>
+
+        <footer>
+            <p>Projeto de Segurança IoT - ESP32</p>
+        </footer>
+
+      <script type="module" src="./js/app.js"></script>
+
+    </body>
+
+</html>
