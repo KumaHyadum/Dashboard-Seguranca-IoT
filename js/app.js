@@ -9,7 +9,9 @@ const ambientes = {
 };
 
 const estadoSistema = document.getElementById ("estado-sistema");
-const estadoDispositivo = document.getElementById("estado-dispositivo");
+const estadoConexao = document.getElementById("estado-conexao");
+const painelAmbientes = document.getElementById("painel-ambientes");
+let sistemaArmado = null;
 let ultimaAtualizacaoDispositivo = null;
 let diferencaServidor = 0;
 let conectadoFirebase = false;
@@ -19,9 +21,18 @@ function atualizarDispositivo() {
 
     const idade = Date.now() + diferencaServidor - ultimaAtualizacaoDispositivo;
 
-    const esp32Conectado = conectadoFirebase && horarioValido && idade <= 45000;
+    const centralConectada = conectadoFirebase && horarioValido && idade >= -5000 && idade <= 45000;
 
-    estadoConexao.textContent = esp32Conectado ? "Conectado ao Firebase." : "Desconectado do Firebase.";
+    painelAmbientes.hidden = !centralConectada;
+    estadoConexao.textContent = centralConectada ? "Central conectada." : "Central desconectada.";
+
+    if (!centralConectada) {
+        estadoSistema.textContent = "Sem comunicação";
+    }
+
+    else {
+        estadoSistema.textContent = sistemaArmado === true ? "Armado" : sistemaArmado === false ? "Desarmado" : "Aguardando dados";
+    }
 }
 
 setInterval(atualizarDispositivo, 1000);
@@ -31,7 +42,6 @@ onValue(ref(db, ".info/serverTimeOffset"), (snapshot) => {
     atualizarDispositivo();
 });
 
-const estadoConexao = document.getElementById ("estado-conexao");
 const listaLogs = document.getElementById ("lista-logs");
 const logsVazios = document.getElementById ("logs-vazios");
 
@@ -76,10 +86,7 @@ onValue(ref(db, `${caminho}/sensores`), (snapshot) => {
 onValue(ref(db, `${caminho}/estado`), (snapshot) => {
     const estado = snapshot.val();
 
-    estadoSistema.textContent =
-        estado?.armado === true ? "Armado" :
-        estado?.armado ===  false ? "Desarmado" :
-            "Aguardando dados";
+    sistemaArmado = estado?.armado;
 
     const horario = estado?.ultimaAtualizacao;
     ultimaAtualizacaoDispositivo = horario;
