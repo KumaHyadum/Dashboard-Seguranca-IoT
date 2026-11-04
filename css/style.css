@@ -12,8 +12,8 @@ body {
     flex-direction: column;
 
     font-family: Arial, sans-serif;
-    background: white;
-    color: #222;
+    background: #f1f5f9;
+    color: #334155;
 }
 
 h1 {
@@ -132,4 +132,65 @@ main {
     display: block;
     margin-top: 20px;
     font-size: 14px;
+}
+
+.cabecalho h1 {
+    color: #1e3a5f;
+}
+
+.cabecalho p, footer {
+    color: #64748b;
+}
+
+h2, .ambiente h3 {
+    color: #1e293b;
+}
+
+.painel, #painel-sistema {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+#painel-sistema > p {
+    color: #64748b;
+}
+
+#painel-sistema strong {
+    color: #1e3a5f;
+}
+
+.ambiente {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+.ambiente[data-estado="normal"] {
+    background: #f0fdf4;
+    border-color: #86cfa3;
+}
+
+.ambiente[data-estado="normal"] .status {
+    color: #166534;
+}
+
+.ambiente[data-estado="alerta"] {
+    background: #fff1f2;
+    border-color: #e87985;
+}
+
+.ambiente[data-estado="alerta"] .status {
+    color: #b91c1c;
+}
+
+.ambiente[data-estado="desconhecido"] {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+#lista-logs li {
+    border-bottom-color: #e2e8f0;
+}
+
+#lista-logs li:nth-child(even) {
+    background: #f8fafc;
 }
